@@ -6,7 +6,6 @@ import kong.unirest.GetRequest;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
-import kong.unirest.json.JSONException;
 import kong.unirest.json.JSONObject;
 import org.apache.maven.wagon.authentication.AuthenticationInfo;
 import org.apache.maven.wagon.repository.Repository;
@@ -46,7 +45,7 @@ public class HevoS3Wagon extends S3Wagon {
             String secretKey = jsonObject.getString("secret_key");
             String sessionToken = jsonObject.getString("token");
             return new AwsSessionCredentials(accessKey, secretKey, sessionToken);
-        } catch (JSONException e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
             throw e;
         }
